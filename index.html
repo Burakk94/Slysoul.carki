@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Slysoul Vadi Çarkı - KAOS EDITION</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root { --lol-gold: #c8aa6e; --lol-blue: #0ac8b9; --kaos-red: #ff4d4d; }
         body {
@@ -182,8 +183,16 @@
             document.getElementById('downloadBtn').style.display = 'inline-block';
         }
 
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            html2canvas(document.getElementById('captureArea'), { backgroundColor: '#05050a' }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Slysoul_Kaos_${document.getElementById('cName').innerText}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
+
         init();
     </script>
 </body>
 </html>
-
